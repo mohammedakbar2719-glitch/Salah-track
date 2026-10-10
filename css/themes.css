@@ -1,0 +1,67 @@
+/**
+ * SalahTrack — Theme Overrides (Dark Mode & System Sync)
+ */
+
+[data-theme="dark"] {
+  /* Brand Adjustments for Dark Mode */
+  --color-primary: #1e5a45;
+  --color-primary-hover: #267156;
+  --color-primary-active: #174837;
+  --color-primary-light: #2b7d60;
+  --color-primary-subtle: #142a21;
+  --color-primary-border: #284c3d;
+
+  /* Accent Gold in Dark Mode */
+  --color-accent-gold: #d4aa5d;
+  --color-accent-gold-hover: #e2be76;
+  --color-accent-gold-soft: #2b2314;
+  --color-accent-gold-border: #4d3d20;
+
+  /* Deep Slate Forest Dark Mode Surfaces */
+  --color-bg-main: #0c1410;          /* Deep Obsidian Green */
+  --color-bg-surface: #131f19;       /* Dark Emerald Surface */
+  --color-bg-subtle: #192720;        /* Subtle Border & Chip Fill */
+  --color-bg-muted: #21332a;
+
+  /* Text Colors */
+  --color-text-primary: #f2f6f4;     /* Crisp Pale Mist */
+  --color-text-secondary: #9cb1a5;   /* Soft Pale Sage */
+  --color-text-muted: #6b8275;       /* Muted Slate */
+  --color-text-inverse: #0c1410;
+  --color-text-accent: #e2be76;
+
+  /* Borders & Dividers */
+  --color-border: #22352b;
+  --color-border-subtle: #1c2a22;
+  --color-border-strong: #30473a;
+
+  /* Feedback in Dark Mode */
+  --color-success: #2ea36f;
+  --color-success-bg: #11291d;
+  --color-success-border: #1f4734;
+  --color-warning: #cfa04e;
+  --color-warning-bg: #2d2412;
+  --color-danger: #c45749;
+  --color-danger-bg: #2d1614;
+  --color-info: #3da2b8;
+  --color-info-bg: #12282e;
+
+  /* Shadows for Dark Mode */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 0 24px rgba(46, 163, 111, 0.25);
+}
+
+/* Accessible High Contrast / Media Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

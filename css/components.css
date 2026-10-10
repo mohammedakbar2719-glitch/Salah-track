@@ -1,0 +1,910 @@
+/**
+ * SalahTrack — Component Styles
+ * Prayer Cards, Progress Ring, Date Navigation, Calendar, Modals
+ */
+
+/* ==========================================================================
+   Page Headers & Banners
+   ========================================================================== */
+.view-header {
+  padding: var(--space-lg) 0 var(--space-md);
+}
+
+.greeting-lead {
+  font-size: var(--text-sm);
+  color: var(--color-accent-gold);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2xs);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.greeting-lead svg {
+  width: 16px;
+  height: 16px;
+}
+
+.page-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .page-title {
+    font-size: var(--text-3xl);
+  }
+}
+
+.date-subtitle {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.hijri-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-accent-gold-soft);
+  color: var(--color-text-accent);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  border: 1px solid var(--color-accent-gold-border);
+}
+
+/* ==========================================================================
+   Date Navigator (Dashboard & Detail Views)
+   ========================================================================== */
+.date-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xs) var(--space-sm);
+  margin-bottom: var(--space-lg);
+  box-shadow: var(--shadow-xs);
+}
+
+.date-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.date-nav-btn:hover {
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-primary);
+}
+
+.date-nav-center {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.date-nav-label {
+  font-weight: 600;
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast);
+}
+
+.date-nav-label:hover {
+  background-color: var(--color-bg-subtle);
+}
+
+.today-chip {
+  font-size: var(--text-xs);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-subtle);
+  color: var(--color-primary);
+  font-weight: 600;
+  border: 1px solid var(--color-primary-border);
+}
+
+[data-theme="dark"] .today-chip {
+  color: var(--color-accent-gold);
+}
+
+/* ==========================================================================
+   Today's Progress Card & Ring
+   ========================================================================== */
+.progress-card {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 140px;
+  background-image: radial-gradient(circle at 100% 50%, rgba(192, 151, 78, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.progress-ring-wrapper {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  flex-shrink: 0;
+}
+
+.progress-ring-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+  fill: none;
+  stroke: var(--color-bg-subtle);
+  stroke-width: 8;
+}
+
+.progress-ring-meter {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 400ms cubic-bezier(0.16, 1, 0.3, 1), stroke var(--transition-normal);
+}
+
+[data-theme="dark"] .progress-ring-meter {
+  stroke: var(--color-accent-gold);
+}
+
+.progress-ring-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-percentage {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.progress-info {
+  flex: 1;
+}
+
+.progress-headline {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.progress-description {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+.progress-badge-complete {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-success);
+  background-color: var(--color-success-bg);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-success-border);
+}
+
+/* ==========================================================================
+   Prayer Cards List & Individual Cards
+   ========================================================================== */
+.prayer-list-wrapper {
+  margin-bottom: var(--space-xl);
+}
+
+.section-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-sm);
+}
+
+.section-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.prayer-cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.prayer-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  box-shadow: var(--shadow-xs);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+  position: relative;
+}
+
+.prayer-card:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Completed State */
+.prayer-card.is-completed {
+  background-color: rgba(18, 62, 47, 0.03);
+  border-color: var(--color-primary-border);
+}
+
+[data-theme="dark"] .prayer-card.is-completed {
+  background-color: rgba(30, 99, 75, 0.08);
+  border-color: var(--color-primary-border);
+}
+
+.prayer-card-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex: 1;
+  min-width: 0;
+}
+
+.prayer-icon-pill {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.prayer-card.is-completed .prayer-icon-pill {
+  background-color: var(--color-primary-subtle);
+  border-color: var(--color-primary-border);
+  color: var(--color-primary);
+}
+
+[data-theme="dark"] .prayer-card.is-completed .prayer-icon-pill {
+  color: var(--color-accent-gold);
+}
+
+.prayer-card-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.prayer-names-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+}
+
+.prayer-name-en {
+  font-weight: 600;
+  font-size: var(--text-md);
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.prayer-name-ar {
+  font-family: var(--font-arabic);
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  line-height: 1;
+}
+
+.prayer-meta-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: 3px;
+  flex-wrap: wrap;
+}
+
+.prayer-status-chip {
+  font-size: var(--text-xs);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 500;
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border-subtle);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.prayer-status-chip:hover {
+  background-color: var(--color-bg-muted);
+}
+
+.prayer-card.is-completed .prayer-status-chip {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+  border-color: var(--color-success-border);
+}
+
+.prayer-card.is-excused {
+  opacity: 0.75;
+  background-color: var(--color-bg-subtle);
+}
+
+.prayer-card.is-excused .prayer-status-chip {
+  background-color: var(--color-info-bg);
+  color: var(--color-info);
+}
+
+/* Prayer Action Toggle Button */
+.prayer-toggle-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-surface);
+  border: 2px solid var(--color-border);
+  color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.prayer-toggle-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-text-muted);
+  transform: scale(1.04);
+}
+
+.prayer-card.is-completed .prayer-toggle-btn {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(18, 62, 47, 0.25);
+}
+
+[data-theme="dark"] .prayer-card.is-completed .prayer-toggle-btn {
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary-light);
+  color: #ffffff;
+}
+
+.prayer-toggle-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2.5;
+}
+
+/* ==========================================================================
+   Weekly Consistency Strip (Dashboard)
+   ========================================================================== */
+.weekly-summary-card {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-xl);
+  box-shadow: var(--shadow-xs);
+}
+
+.weekly-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-sm);
+}
+
+.weekly-title {
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+}
+
+.weekly-link {
+  font-size: var(--text-xs);
+  color: var(--color-primary);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+[data-theme="dark"] .weekly-link {
+  color: var(--color-accent-gold);
+}
+
+.weekly-pills-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-xs);
+}
+
+.weekly-day-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 4px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-subtle);
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.weekly-day-pill.is-today {
+  border-color: var(--color-primary-border);
+  background-color: var(--color-primary-subtle);
+}
+
+.weekly-day-name {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.weekly-day-pill.is-today .weekly-day-name {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+[data-theme="dark"] .weekly-day-pill.is-today .weekly-day-name {
+  color: var(--color-accent-gold);
+}
+
+.weekly-dot-container {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.weekly-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-border-strong);
+}
+
+.weekly-dot.filled {
+  background-color: var(--color-primary);
+}
+
+[data-theme="dark"] .weekly-dot.filled {
+  background-color: var(--color-accent-gold);
+}
+
+.weekly-score-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   Daily Reflection / Notes Card
+   ========================================================================== */
+.notes-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-xl);
+  box-shadow: var(--shadow-xs);
+}
+
+.notes-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-sm);
+  cursor: pointer;
+}
+
+.notes-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+}
+
+.notes-title svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-accent-gold);
+}
+
+.notes-status {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.notes-textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: var(--space-sm);
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  resize: vertical;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.notes-textarea:focus {
+  background-color: var(--color-bg-surface);
+  border-color: var(--color-primary-border);
+}
+
+/* ==========================================================================
+   Calendar View Components
+   ========================================================================== */
+.calendar-card {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.calendar-month-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.calendar-month-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.calendar-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+@media (min-width: 480px) {
+  .calendar-grid {
+    gap: 8px;
+  }
+}
+
+.calendar-weekday-header {
+  text-align: center;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  padding: var(--space-2xs) 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.calendar-day-cell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition-fast);
+  padding: 4px;
+}
+
+.calendar-day-cell:hover:not(.empty) {
+  background-color: var(--color-bg-subtle);
+  border-color: var(--color-border);
+}
+
+.calendar-day-cell.empty {
+  cursor: default;
+  opacity: 0;
+}
+
+.calendar-day-cell.is-today {
+  border-color: var(--color-primary-border);
+  background-color: var(--color-primary-subtle);
+}
+
+.calendar-day-cell.is-selected {
+  outline: 2px solid var(--color-accent-gold);
+  background-color: var(--color-accent-gold-soft);
+}
+
+.calendar-day-number {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.calendar-day-dots {
+  display: flex;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.cal-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-border);
+}
+
+.cal-dot.active {
+  background-color: var(--color-primary);
+}
+
+[data-theme="dark"] .cal-dot.active {
+  background-color: var(--color-accent-gold);
+}
+
+.cal-exempt-icon {
+  font-size: 10px;
+  color: var(--color-info);
+  margin-top: 3px;
+}
+
+/* Distinct Daily Completion Status Badges */
+.calendar-day-cell.day-completed {
+  background-color: var(--color-success-bg);
+  border-color: var(--color-success-border);
+}
+
+.calendar-day-cell.day-completed .calendar-day-number {
+  color: var(--color-success);
+}
+
+.calendar-day-cell.day-partial {
+  background-color: var(--color-warning-bg);
+  border-color: var(--color-warning-border);
+}
+
+.calendar-day-cell.day-partial .calendar-day-number {
+  color: var(--color-warning);
+}
+
+.calendar-day-cell.day-exempt {
+  background-color: var(--color-info-bg);
+  border-color: var(--color-info-border);
+}
+
+.calendar-day-cell.day-unrecorded {
+  border: 1px dashed var(--color-border);
+  opacity: 0.85;
+}
+
+.calendar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border-subtle);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.cal-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cal-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+}
+
+.cal-legend-dot.completed {
+  background-color: var(--color-success);
+  border: 1px solid var(--color-success-border);
+}
+
+.cal-legend-dot.partial {
+  background-color: var(--color-warning);
+  border: 1px solid var(--color-warning-border);
+}
+
+.cal-legend-dot.unrecorded {
+  background-color: transparent;
+  border: 1px dashed var(--color-border);
+}
+
+.cal-legend-dot.exempt {
+  background-color: var(--color-info);
+  border: 1px solid var(--color-info-border);
+}
+
+/* ==========================================================================
+   Modals & Dialogs
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(12, 20, 16, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-dialog {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translateY(12px) scale(0.98);
+  transition: transform var(--transition-normal);
+}
+
+.modal-backdrop.open .modal-dialog {
+  transform: translateY(0) scale(1);
+}
+
+.modal-header {
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.modal-body {
+  padding: var(--space-lg);
+}
+
+.modal-footer {
+  padding: var(--space-md) var(--space-lg);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+}
+
+/* Generic Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: 10px 18px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: 1px solid var(--color-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-bg-muted);
+}
+
+.btn-danger {
+  background-color: var(--color-danger);
+  color: #ffffff;
+  border: 1px solid var(--color-danger);
+}
+
+.btn-danger:hover {
+  opacity: 0.9;
+}

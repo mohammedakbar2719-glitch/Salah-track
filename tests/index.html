@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SalahTrack — Test Suite Runner</title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <style>
+    body {
+      padding: 32px 16px;
+      max-width: 860px;
+      margin: 0 auto;
+      background-color: var(--color-bg-main);
+      color: var(--color-text-primary);
+      font-family: var(--font-sans);
+    }
+    .test-header {
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 16px;
+    }
+    .test-summary-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: var(--text-sm);
+      margin-top: 8px;
+    }
+    .badge-pass {
+      background-color: var(--color-success-bg);
+      color: var(--color-success);
+      border: 1px solid var(--color-success-border);
+    }
+    .badge-fail {
+      background-color: var(--color-danger-bg);
+      color: var(--color-danger);
+      border: 1px solid var(--color-danger);
+    }
+    .test-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .test-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 14px;
+      background-color: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      font-size: var(--text-sm);
+    }
+    .test-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .test-badge.pass {
+      background-color: var(--color-success-bg);
+      color: var(--color-success);
+    }
+    .test-badge.fail {
+      background-color: var(--color-danger-bg);
+      color: var(--color-danger);
+    }
+  </style>
+</head>
+<body>
+  <div class="test-header">
+    <h1>SalahTrack — Engine Verification Test Runner</h1>
+    <p style="color:var(--color-text-secondary); margin-top:4px;">
+      Automated verification of date boundaries, deduplication, calculations, undo, historical edits, refresh persistence, empty days, schema migrations, and Qada ledger.
+    </p>
+    <div id="test-summary-container">
+      <div class="test-summary-badge" style="background-color:var(--color-bg-subtle);">Running verification tests...</div>
+    </div>
+  </div>
+
+  <div id="test-results-list" class="test-list"></div>
+
+  <!-- Engine Scripts -->
+  <script src="../js/models/prayer-types.js"></script>
+  <script src="../js/models/prayer-record.js"></script>
+  <script src="../js/utils/date-utils.js"></script>
+  <script src="../js/utils/dom-utils.js"></script>
+  <script src="../js/storage/local-storage.js"></script>
+  <script src="../js/storage/firestore-adapter.js"></script>
+  <script src="../js/services/stats-service.js"></script>
+  <script src="../js/services/qada-service.js"></script>
+  <script src="../js/services/export-service.js"></script>
+  <script src="../js/services/prayer-times-calculator.js"></script>
+  <script src="../js/services/prayer-times.js"></script>
+  <script src="../js/services/reminder-service.js"></script>
+  <script src="../js/state.js"></script>
+  <script src="../js/components/prayer-card.js"></script>
+  <script src="../js/components/calendar-view.js"></script>
+  <script src="../js/components/stats-view.js"></script>
+
+  <!-- Test Suite Script -->
+  <script src="suite.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const summaryEl = document.getElementById('test-summary-container');
+      const listEl = document.getElementById('test-results-list');
+
+      const outcome = await window.SalahTrackTests.runAllTests();
+
+      if (outcome.failedCount === 0) {
+        summaryEl.innerHTML = `<span class="test-summary-badge badge-pass">✔ All ${outcome.passedCount} Tests Passed (100% Fidelity)</span>`;
+      } else {
+        summaryEl.innerHTML = `<span class="test-summary-badge badge-fail">✖ ${outcome.failedCount} Failed, ${outcome.passedCount} Passed</span>`;
+      }
+
+      listEl.innerHTML = outcome.results.map(r => `
+        <div class="test-item">
+          <span class="test-badge ${r.status.toLowerCase()}">${r.status}</span>
+          <div style="flex:1;">
+            <div>${r.message}</div>
+            ${r.details ? `<div style="font-size:12px; color:var(--color-text-muted); margin-top:2px;">${r.details}</div>` : ''}
+          </div>
+        </div>
+      `).join('');
+    });
+  </script>
+</body>
+</html>

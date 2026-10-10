@@ -1,0 +1,81 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny all access to any unspecified collection
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions for authentication & validation
+    function isAuthenticated() {
+      return request.auth != null && request.auth.uid != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isValidDateKey(dateKey) {
+      return dateKey.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$');
+    }
+
+    // User profile document: users/{userId}
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow create, update: if isOwner(userId)
+        && request.resource.data.keys().hasOnly(['uid', 'email', 'displayName', 'createdAt', 'updatedAt', 'settings'])
+        && request.resource.data.uid == userId;
+      allow delete: if isOwner(userId);
+
+      // User prayer days: users/{userId}/prayerDays/{dateKey}
+      match /prayerDays/{dateKey} {
+        allow read: if isOwner(userId);
+        allow create, update: if isOwner(userId)
+          && isValidDateKey(dateKey)
+          && request.resource.data.date == dateKey
+          && request.resource.data.userId == userId
+          && request.resource.data.keys().hasOnly([
+            'date', 'userId', 'timezone', 'prayers', 'note', 'isExempt',
+            'createdAt', 'updatedAt', 'schemaVersion'
+          ])
+          // Type & size validation
+          && request.resource.data.schemaVersion is int
+          && request.resource.data.schemaVersion == 2
+          && request.resource.data.date is string
+          && request.resource.data.timezone is string
+          && request.resource.data.timezone.size() <= 64
+          && request.resource.data.note is string
+          && request.resource.data.note.size() <= 2000
+          && request.resource.data.isExempt is bool
+          && request.resource.data.prayers is map
+          && request.resource.data.prayers.keys().hasOnly(['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'])
+          && request.resource.data.prayers.fajr.completed is bool
+          && request.resource.data.prayers.dhuhr.completed is bool
+          && request.resource.data.prayers.asr.completed is bool
+          && request.resource.data.prayers.maghrib.completed is bool
+          && request.resource.data.prayers.isha.completed is bool;
+
+        allow delete: if isOwner(userId);
+      }
+
+      // User Qada Ledger: users/{userId}/qada/{documentId}
+      match /qada/{documentId} {
+        allow read: if isOwner(userId);
+        allow create, update: if isOwner(userId)
+          && request.resource.data.userId == userId
+          && request.resource.data.keys().hasOnly([
+            'userId', 'owed', 'totalFulfilled', 'history', 'schemaVersion', 'updatedAt'
+          ])
+          && request.resource.data.schemaVersion is int
+          && request.resource.data.owed is map
+          && request.resource.data.owed.keys().hasOnly(['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'])
+          && request.resource.data.totalFulfilled is int
+          && request.resource.data.history is list
+          && request.resource.data.history.size() <= 100;
+
+        allow delete: if isOwner(userId);
+      }
+    }
+  }
+}

@@ -1,0 +1,97 @@
+/**
+ * SalahTrack — Design System Tokens & Variables
+ * Peaceful, Minimalist Islamic Design Aesthetic
+ */
+
+:root {
+  /* Brand Palettes — Warm Ivory & Deep Forest Emerald */
+  --color-primary: #123e2f;          /* Deep Forest Emerald */
+  --color-primary-hover: #19523f;
+  --color-primary-active: #0c2d22;
+  --color-primary-light: #1e634b;
+  --color-primary-subtle: #e8f3ee;   /* Soft emerald tint */
+  --color-primary-border: #c4ded2;
+
+  /* Accent Gold — Muted Brass / Antique Gold */
+  --color-accent-gold: #c0974e;
+  --color-accent-gold-hover: #aa833e;
+  --color-accent-gold-soft: #f7f1e5;
+  --color-accent-gold-border: #e8d9be;
+
+  /* Neutrals & Surfaces (Light Mode) */
+  --color-bg-main: #fbf8f3;          /* Warm Parchment / Ivory */
+  --color-bg-surface: #ffffff;       /* Pure Card Surface */
+  --color-bg-subtle: #f4efe6;        /* Subtle Border & Chip Fill */
+  --color-bg-muted: #ece5d8;
+  
+  /* Text Colors */
+  --color-text-primary: #18221c;     /* Deep slate charcoal */
+  --color-text-secondary: #56645c;   /* Soft green-grey */
+  --color-text-muted: #829288;       /* Subtle caption */
+  --color-text-inverse: #ffffff;
+  --color-text-accent: #a37c34;
+
+  /* Borders & Dividers */
+  --color-border: #e7dfd2;
+  --color-border-subtle: #efeae0;
+  --color-border-strong: #cfc5b4;
+
+  /* Feedback & Semantic States */
+  --color-success: #196b48;
+  --color-success-bg: #eaf5ee;
+  --color-success-border: #bce0cb;
+  --color-warning: #9e6c1e;
+  --color-warning-bg: #fdf5e7;
+  --color-danger: #8a3324;
+  --color-danger-bg: #fcf0ee;
+  --color-info: #1f4e5b;
+  --color-info-bg: #eaf3f5;
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: 'Cinzel', 'Playfair Display', Georgia, serif;
+  --font-arabic: 'Amiri', 'Traditional Arabic', serif;
+
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.84375rem; /* 13.5px */
+  --text-base: 0.9375rem;/* 15px */
+  --text-md: 1.0625rem;  /* 17px */
+  --text-lg: 1.25rem;    /* 20px */
+  --text-xl: 1.5rem;     /* 24px */
+  --text-2xl: 1.875rem;  /* 30px */
+  --text-3xl: 2.25rem;   /* 36px */
+
+  /* Spacing System */
+  --space-2xs: 0.25rem;  /* 4px */
+  --space-xs: 0.5rem;    /* 8px */
+  --space-sm: 0.75rem;   /* 12px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+
+  /* Border Radii */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* Shadows — Gentle and warm */
+  --shadow-xs: 0 1px 2px rgba(18, 62, 47, 0.04);
+  --shadow-sm: 0 2px 6px rgba(18, 62, 47, 0.05);
+  --shadow-md: 0 6px 16px rgba(18, 62, 47, 0.07);
+  --shadow-lg: 0 12px 32px rgba(18, 62, 47, 0.09);
+  --shadow-glow: 0 0 20px rgba(18, 62, 47, 0.18);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 350ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --header-height: 64px;
+  --nav-bottom-height: 68px;
+  --container-max-width: 980px;
+  --sidebar-width: 260px;
+}

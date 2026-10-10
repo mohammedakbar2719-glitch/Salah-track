@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#123e2f">
+  <meta name="description" content="SalahTrack — A peaceful, private, mobile-first Islamic prayer tracker to maintain your daily five prayers and reflect on your spiritual consistency.">
+  <title>SalahTrack — Peaceful Islamic Prayer Tracker</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans, Cinzel, Amiri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Design System CSS Files -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/stats.css">
+  <link rel="stylesheet" href="css/themes.css">
+
+  <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+  <div id="app">
+    <!-- Desktop Sidebar Navigation (>= 1024px) -->
+    <aside class="app-sidebar" aria-label="Main Desktop Navigation">
+      <div class="sidebar-brand">
+        <div class="brand-wrapper">
+          <div class="brand-logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <div>
+            <div class="brand-title">SalahTrack</div>
+            <div style="font-size:11px; color:var(--color-text-muted); letter-spacing:0.04em;">صلاتك نجاتك</div>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <a href="#dashboard" class="sidebar-nav-item active" data-nav-target="dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="#calendar" class="sidebar-nav-item" data-nav-target="calendar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>Calendar</span>
+        </a>
+        <a href="#stats" class="sidebar-nav-item" data-nav-target="stats">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+          <span>Statistics</span>
+        </a>
+        <a href="#qada" class="sidebar-nav-item" data-nav-target="qada">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Qada Tracker</span>
+        </a>
+        <a href="#settings" class="sidebar-nav-item" data-nav-target="settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background-color:var(--color-success);"></span>
+          <span>100% Private & On-Device</span>
+        </div>
+        <div>No cloud tracking or ads.</div>
+      </div>
+    </aside>
+
+    <!-- Main Content Flow -->
+    <main class="app-main">
+      <!-- App Header -->
+      <header class="app-header">
+        <div class="container header-content">
+          <div class="brand-wrapper">
+            <div class="brand-logo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+            <div class="brand-title">SalahTrack</div>
+            <span class="brand-badge" id="header-sync-badge">Saved Locally</span>
+          </div>
+
+          <div class="header-actions">
+            <button class="btn-icon" id="header-theme-toggle" aria-label="Toggle Light and Dark Theme" title="Toggle Theme">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+            <button class="btn-icon" data-nav-target="settings" aria-label="Open Settings" title="Settings">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="container">
+        <!-- ========================================== -->
+        <!-- VIEW 1: DASHBOARD                          -->
+        <!-- ========================================== -->
+        <section id="view-dashboard" class="view-section active" aria-labelledby="dashboard-title">
+          <div class="view-header">
+            <div class="greeting-lead">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M4.93 10.93l2.83-2.83M2 18h20M20 18a8 8 0 0 0-16 0"/></svg>
+              <span>Assalamu Alaikum • السلام عليكم</span>
+            </div>
+            <h1 class="page-title" id="dashboard-title">Today’s Prayer Sanctuary</h1>
+            <div class="date-subtitle">
+              <span id="dashboard-full-date-display">Loading date...</span>
+              <span class="hijri-badge" id="dashboard-hijri-badge">Loading Hijri...</span>
+            </div>
+          </div>
+
+          <!-- Next Upcoming Prayer Countdown Banner -->
+          <div id="next-prayer-banner-container" style="margin-bottom:var(--space-md);"></div>
+
+          <!-- Date Navigation Bar -->
+          <div class="date-nav-bar">
+            <button class="date-nav-btn" id="btn-prev-day" aria-label="Previous Day" title="Previous Day">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+
+            <div class="date-nav-center">
+              <button class="date-nav-label" id="date-nav-current-label" title="Click to pick a specific date">
+                <span>Today</span>
+              </button>
+              <input type="date" id="date-picker-hidden" style="position:absolute; opacity:0; pointer-events:none; width:1px; height:1px;">
+              <button class="btn btn-secondary" id="btn-today-quick" style="padding:4px 10px; font-size:var(--text-xs); display:none;">
+                Jump to Today
+              </button>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:4px;">
+              <button class="btn btn-secondary" id="btn-toggle-day-exempt" style="padding:4px 10px; font-size:var(--text-xs);">
+                Mark Day as Exempt
+              </button>
+              <button class="date-nav-btn" id="btn-next-day" aria-label="Next Day" title="Next Day">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Today's Progress Card -->
+          <div class="progress-card">
+            <div class="progress-ring-wrapper" id="dashboard-progress-ring">
+              <svg class="progress-ring-svg" viewBox="0 0 88 88">
+                <circle class="progress-ring-bg" cx="44" cy="44" r="36" />
+                <circle class="progress-ring-meter" cx="44" cy="44" r="36" />
+              </svg>
+              <div class="progress-ring-content">
+                <span class="progress-percentage">0%</span>
+              </div>
+            </div>
+
+            <div class="progress-info">
+              <h2 class="progress-headline" id="dashboard-progress-headline">0 of 5 Prayers Fulfilled</h2>
+              <p class="progress-description" id="dashboard-progress-desc">
+                Take a peaceful breath. Tap any prayer below when fulfilled.
+              </p>
+            </div>
+          </div>
+
+          <!-- 5 Prayer Cards -->
+          <div class="prayer-list-wrapper">
+            <div class="section-label-row">
+              <span class="section-title">The Five Daily Prayers</span>
+              <span style="font-size:var(--text-xs); color:var(--color-text-muted);">1-Tap to toggle</span>
+            </div>
+            <div id="dashboard-prayers-list" class="prayer-cards-grid">
+              <!-- Rendered dynamically by prayer-card.js -->
+            </div>
+          </div>
+
+          <!-- Weekly Habit Strip -->
+          <div id="weekly-strip-container">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <!-- Daily Reflection Notes -->
+          <div id="dashboard-notes-container">
+            <!-- Rendered dynamically -->
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 2: CALENDAR                           -->
+        <!-- ========================================== -->
+        <section id="view-calendar" class="view-section" aria-labelledby="calendar-title">
+          <div class="view-header">
+            <div class="greeting-lead">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>Prayer Journey</span>
+            </div>
+            <h1 class="page-title" id="calendar-title">Interactive Calendar</h1>
+            <p class="date-subtitle">Review and update records across any past day.</p>
+          </div>
+
+          <div id="calendar-container"></div>
+          <div id="calendar-selected-day-container"></div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 3: STATISTICS                         -->
+        <!-- ========================================== -->
+        <section id="view-stats" class="view-section" aria-labelledby="stats-title">
+          <div class="view-header">
+            <div class="greeting-lead">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+              <span>Authentic Analytics</span>
+            </div>
+            <h1 class="page-title" id="stats-title">Habit Consistency</h1>
+            <p class="date-subtitle">100% true statistics calculated strictly from your saved logs.</p>
+          </div>
+
+          <div id="stats-container"></div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 4: QADA TRACKER                       -->
+        <!-- ========================================== -->
+        <section id="view-qada" class="view-section" aria-labelledby="qada-title">
+          <div class="view-header">
+            <div class="greeting-lead">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span>Expiation & Journey</span>
+            </div>
+            <h1 class="page-title" id="qada-title">Qada Prayer Tracker</h1>
+            <p class="date-subtitle">Keep track of and make up past missed prayers with peace and consistency.</p>
+          </div>
+
+          <div id="qada-container"></div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 5: SETTINGS                           -->
+        <!-- ========================================== -->
+        <section id="view-settings" class="view-section" aria-labelledby="settings-title">
+          <div class="view-header">
+            <div class="greeting-lead">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <span>Preferences</span>
+            </div>
+            <h1 class="page-title" id="settings-title">App Settings</h1>
+            <p class="date-subtitle">Manage themes, data exports, Qada preferences, and tracking options.</p>
+          </div>
+
+          <div id="settings-container"></div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Mobile Bottom Navigation (< 1024px) -->
+    <nav class="nav-bottom" aria-label="Mobile Bottom Navigation">
+      <a href="#dashboard" class="nav-item active" data-nav-target="dashboard" aria-label="Dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Today</span>
+      </a>
+      <a href="#calendar" class="nav-item" data-nav-target="calendar" aria-label="Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>Calendar</span>
+      </a>
+      <a href="#stats" class="nav-item" data-nav-target="stats" aria-label="Statistics">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+        <span>Insights</span>
+      </a>
+      <a href="#qada" class="nav-item" data-nav-target="qada" aria-label="Qada Tracker">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>Qada</span>
+      </a>
+      <a href="#settings" class="nav-item" data-nav-target="settings" aria-label="Settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span>Settings</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Detailed Status Selection Modal -->
+  <div class="modal-backdrop" id="status-modal" role="dialog" aria-modal="true" aria-labelledby="status-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="status-modal-title">Select Prayer Status</h3>
+        <button class="btn-icon" id="status-modal-close" aria-label="Close dialog">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Destructive / General Confirmation Modal -->
+  <div class="modal-backdrop" id="confirm-modal" role="dialog" aria-modal="true" aria-labelledby="confirm-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="confirm-modal-title">Confirm Action</h3>
+        <button class="btn-icon" id="confirm-modal-close" aria-label="Close dialog">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:var(--text-sm); color:var(--color-text-secondary); line-height:1.5;">Are you sure?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="confirm-modal-cancel">Cancel</button>
+        <button class="btn btn-primary" id="confirm-modal-ok">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container with Undo Support -->
+  <div id="toast-container" role="region" aria-live="polite"></div>
+
+  <!-- Firebase SDKs (v10 compat - loaded gracefully) -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+  <!-- Script Modules in Strict Dependency Order -->
+  <script src="js/models/prayer-types.js"></script>
+  <script src="js/models/prayer-record.js"></script>
+  <script src="js/utils/date-utils.js"></script>
+  <script src="js/utils/dom-utils.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/storage/local-storage.js"></script>
+  <script src="js/storage/firestore-adapter.js"></script>
+  <script src="js/services/stats-service.js"></script>
+  <script src="js/services/qada-service.js"></script>
+  <script src="js/services/export-service.js"></script>
+  <script src="js/services/prayer-times-calculator.js"></script>
+  <script src="js/services/prayer-times.js"></script>
+  <script src="js/services/reminder-service.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/components/prayer-card.js"></script>
+  <script src="js/components/progress-ring.js"></script>
+  <script src="js/components/calendar-view.js"></script>
+  <script src="js/components/stats-view.js"></script>
+  <script src="js/components/qada-view.js"></script>
+  <script src="js/components/notes-view.js"></script>
+  <script src="js/components/settings-modal.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
